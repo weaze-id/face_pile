@@ -1,7 +1,7 @@
 name: face_pile
 description: Displays a stacked list of users. Each circle represents a person and contains their image. This widget is usually used when sharing who has access to a specific view or file, or when assigning tasks to someone in a workflow
 version: 0.0.1
-homepage:
+homepage: https://github.com/edsulaiman/face_pile
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
