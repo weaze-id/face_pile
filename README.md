@@ -20,3 +20,7 @@ FacePile(
   ],
 ),
 ```
+
+## Contribute
+
+Some of the best ways to contribute are to try things out, file issues, and make pull-requests.
