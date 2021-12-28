@@ -28,17 +28,20 @@ class HomePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          children: const [
+          children: [
             FacePile(
-              radius: 32,
+              dimension: 32,
               space: 40,
-              images: [
+              images: const [
                 NetworkImage("https://i.pravatar.cc/300?img=1"),
                 NetworkImage("https://i.pravatar.cc/300?img=2"),
                 NetworkImage("https://i.pravatar.cc/300?img=3"),
                 NetworkImage("https://i.pravatar.cc/300?img=4"),
               ],
-              child: Text("3+"),
+              child: const Text("3+"),
+              backgroundColor: Colors.red,
+              childBackgroundColor: Colors.blue,
+              border: Border.all(color: Colors.white, width: 3),
             ),
           ],
         ),
