@@ -15,25 +15,29 @@ class FacePile extends StatelessWidget {
     this.child,
     this.backgroundColor,
     this.childBackgroundColor,
+    this.border,
   }) : super(key: key);
 
   /// List of user profile image.
   final List<ImageProvider<Object>> images;
 
-  /// Radius of [CircleAvatar].
+  /// Radius of image.
   final double radius;
 
-  /// determine the space between each [CircleAvatar].
+  /// determine the space between each image..
   final double space;
 
   /// Widget to show in circle avatar in last order.
   final Widget? child;
 
-  /// [CircleAvatar] background color.
+  /// Image background color.
   final Color? backgroundColor;
 
-  /// [CircleAvatar] background color for child.
+  /// Image background color for child.
   final Color? childBackgroundColor;
+
+  /// Border for each image
+  final BoxBorder? border;
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +57,15 @@ class FacePile extends StatelessWidget {
           if (child != null)
             Positioned(
               left: space * faceLength,
-              child: CircleAvatar(
-                radius: radius,
-                backgroundColor: childBackgroundColor ?? backgroundColor,
-                child: child!,
+              child: Container(
+                width: radius * 2,
+                height: radius * 2,
+                decoration: BoxDecoration(
+                  border: border,
+                  shape: BoxShape.circle,
+                  color: childBackgroundColor,
+                ),
+                child: child,
               ),
             ),
           ...List.generate(
@@ -65,10 +74,15 @@ class FacePile extends StatelessWidget {
               final newIndex = faceLength - index - 1;
               final image = images[newIndex];
 
-              final avatar = CircleAvatar(
-                radius: radius,
-                backgroundImage: image,
-                backgroundColor: backgroundColor,
+              final avatar = Container(
+                width: radius * 2,
+                height: radius * 2,
+                decoration: BoxDecoration(
+                  border: border,
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: image),
+                  color: backgroundColor,
+                ),
               );
 
               return Positioned(
