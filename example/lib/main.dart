@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
               child: const Text("3+"),
               backgroundColor: Colors.red,
               childBackgroundColor: Colors.blue,
-              border: Border.all(color: Colors.white, width: 3),
+              border: Border.all(color: Colors.white70, width: 3),
             ),
           ],
         ),
