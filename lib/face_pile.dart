@@ -24,7 +24,7 @@ class FacePile extends StatelessWidget {
   /// Width and height of image.
   final double dimension;
 
-  /// determine the space between each image..
+  /// determine the space between each image.
   final double space;
 
   /// Widget to show in circle avatar in last order.
@@ -54,7 +54,8 @@ class FacePile extends StatelessWidget {
           if (child != null)
             Positioned(
               left: space * faceLength,
-              child: Container(
+              child: AnimatedContainer(
+                duration: kThemeChangeDuration,
                 width: dimension,
                 height: dimension,
                 decoration: BoxDecoration(
@@ -71,7 +72,8 @@ class FacePile extends StatelessWidget {
               final newIndex = faceLength - index - 1;
               final image = images[newIndex];
 
-              final avatar = Container(
+              final avatar = AnimatedContainer(
+                duration: kThemeChangeDuration,
                 width: dimension,
                 height: dimension,
                 decoration: BoxDecoration(
