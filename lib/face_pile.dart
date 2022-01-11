@@ -10,53 +10,60 @@ class FacePile extends StatelessWidget {
   const FacePile({
     Key? key,
     required this.images,
-    required this.radius,
+    required this.dimension,
     required this.space,
     this.child,
     this.backgroundColor,
     this.childBackgroundColor,
+    this.border,
   }) : super(key: key);
 
   /// List of user profile image.
   final List<ImageProvider<Object>> images;
 
-  /// Radius of [CircleAvatar].
-  final double radius;
+  /// Width and height of image.
+  final double dimension;
 
-  /// determine the space between each [CircleAvatar].
+  /// determine the space between each image.
   final double space;
 
   /// Widget to show in circle avatar in last order.
   final Widget? child;
 
-  /// [CircleAvatar] background color.
+  /// Image background color.
   final Color? backgroundColor;
 
-  /// [CircleAvatar] background color for child.
+  /// Image background color for child.
   final Color? childBackgroundColor;
+
+  /// Border for each image
+  final BoxBorder? border;
 
   @override
   Widget build(BuildContext context) {
     final faceLength = images.length;
 
     final hasChild = child != null ? 1 : 0;
-    final facePileWidth = space * (faceLength + hasChild) + radius * 2 - space;
+    final facePileWidth = space * (faceLength + hasChild) + dimension - space;
 
     return SizedBox(
       width: facePileWidth,
+      height: dimension,
       child: Stack(
         children: [
-          SizedBox(
-            width: radius * 2,
-            height: radius * 2,
-          ),
           if (child != null)
             Positioned(
               left: space * faceLength,
-              child: CircleAvatar(
-                radius: radius,
-                backgroundColor: childBackgroundColor ?? backgroundColor,
-                child: child!,
+              child: AnimatedContainer(
+                duration: kThemeChangeDuration,
+                width: dimension,
+                height: dimension,
+                decoration: BoxDecoration(
+                  border: border,
+                  shape: BoxShape.circle,
+                  color: childBackgroundColor,
+                ),
+                child: child,
               ),
             ),
           ...List.generate(
@@ -65,10 +72,16 @@ class FacePile extends StatelessWidget {
               final newIndex = faceLength - index - 1;
               final image = images[newIndex];
 
-              final avatar = CircleAvatar(
-                radius: radius,
-                backgroundImage: image,
-                backgroundColor: backgroundColor,
+              final avatar = AnimatedContainer(
+                duration: kThemeChangeDuration,
+                width: dimension,
+                height: dimension,
+                decoration: BoxDecoration(
+                  border: border,
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: image),
+                  color: backgroundColor,
+                ),
               );
 
               return Positioned(
