@@ -10,7 +10,7 @@ Displays a stacked list of users. Each circle represents a person and contains t
 
 ```dart
 FacePile(
-  dimension: 32,
+  radius: 32,
   space: 40,
   images: [
     NetworkImage("https://i.pravatar.cc/300?img=1"),

@@ -10,7 +10,7 @@ class FacePile extends StatelessWidget {
   const FacePile({
     Key? key,
     required this.images,
-    required this.dimension,
+    required this.radius,
     required this.space,
     this.child,
     this.backgroundColor,
@@ -22,7 +22,7 @@ class FacePile extends StatelessWidget {
   final List<ImageProvider<Object>> images;
 
   /// Width and height of image.
-  final double dimension;
+  final double radius;
 
   /// determine the space between each image.
   final double space;
@@ -43,12 +43,13 @@ class FacePile extends StatelessWidget {
   Widget build(BuildContext context) {
     final faceLength = images.length;
 
+    final diameter = radius * 2;
     final hasChild = child != null ? 1 : 0;
-    final facePileWidth = space * (faceLength + hasChild) + dimension - space;
+    final facePileWidth = space * (faceLength + hasChild) + diameter - space;
 
     return SizedBox(
       width: facePileWidth,
-      height: dimension,
+      height: diameter,
       child: Stack(
         children: [
           if (child != null)
@@ -56,8 +57,8 @@ class FacePile extends StatelessWidget {
               left: space * faceLength,
               child: AnimatedContainer(
                 duration: kThemeChangeDuration,
-                width: dimension,
-                height: dimension,
+                width: diameter,
+                height: diameter,
                 decoration: BoxDecoration(
                   border: border,
                   shape: BoxShape.circle,
@@ -74,8 +75,8 @@ class FacePile extends StatelessWidget {
 
               final avatar = AnimatedContainer(
                 duration: kThemeChangeDuration,
-                width: dimension,
-                height: dimension,
+                width: diameter,
+                height: diameter,
                 decoration: BoxDecoration(
                   border: border,
                   shape: BoxShape.circle,

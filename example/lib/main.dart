@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             FacePile(
-              dimension: 32,
+              radius: 32,
               space: 40,
               images: const [
                 NetworkImage("https://i.pravatar.cc/300?img=1"),
@@ -38,10 +38,10 @@ class HomePage extends StatelessWidget {
                 NetworkImage("https://i.pravatar.cc/300?img=3"),
                 NetworkImage("https://i.pravatar.cc/300?img=4"),
               ],
-              child: const Text("3+"),
               backgroundColor: Colors.red,
               childBackgroundColor: Colors.blue,
               border: Border.all(color: Colors.white70, width: 3),
+              child: const Text("3+"),
             ),
           ],
         ),
